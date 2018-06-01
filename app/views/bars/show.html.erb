@@ -72,6 +72,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_food_order" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for food_id -->
+      <div class="form-group">
+        <label for="food_id" class="control-label">
+          Food
+        </label>
+
+        <%= select_tag(:food_id, options_from_collection_for_select(FoodItem.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for bar_id -->
+      <input type="hidden" name="bar_id" value="<%= @bar.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Food Order
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -103,6 +126,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_drink_order" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for drink_id -->
+      <div class="form-group">
+        <label for="drink_id" class="control-label">
+          Drink
+        </label>
+
+        <%= select_tag(:drink_id, options_from_collection_for_select(Drink.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for bar_id -->
+      <input type="hidden" name="bar_id" value="<%= @bar.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Drink Order
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

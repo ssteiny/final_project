@@ -6,6 +6,8 @@ class BarsController < ApplicationController
   end
 
   def show
+    @drink_order = DrinkOrder.new
+    @food_order = FoodOrder.new
     @bar = Bar.find(params[:id])
 
     render("bars/show.html.erb")

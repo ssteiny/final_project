@@ -57,6 +57,35 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_food_order" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for food_id -->
+      <div class="form-group">
+        <label for="food_id" class="control-label">
+          Food
+        </label>
+
+        <%= select_tag(:food_id, options_from_collection_for_select(FoodItem.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for bar_id -->
+      <div class="form-group">
+        <label for="bar_id" class="control-label">
+          Bar
+        </label>
+
+        <%= select_tag(:bar_id, options_from_collection_for_select(Bar.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Food Order
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
