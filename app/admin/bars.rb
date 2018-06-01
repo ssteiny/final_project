@@ -1,4 +1,6 @@
 ActiveAdmin.register Bar do
+
+ permit_params :name, :address, :style, :cuisine, :happy_hour_start_time, :happy_hour_end_time, :latitude, :longitude
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
