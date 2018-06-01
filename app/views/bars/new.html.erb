@@ -1,0 +1,100 @@
+<!-- Validation failure messages -->
+<% if @bar.errors.any? %>
+  <% @bar.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Bar</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_bar" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @bar.name %>">
+      </div>
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Address
+        </label>
+
+        <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @bar.address %>">
+      </div>
+
+      <!-- Label and input for style -->
+      <div class="form-group">
+        <label for="style" class="control-label">
+          Style
+        </label>
+
+        <input type="text" id="style" name="style" placeholder="Style" class="form-control" value="<%= @bar.style %>">
+      </div>
+
+      <!-- Label and input for cuisine -->
+      <div class="form-group">
+        <label for="cuisine" class="control-label">
+          Cuisine
+        </label>
+
+        <input type="text" id="cuisine" name="cuisine" placeholder="Cuisine" class="form-control" value="<%= @bar.cuisine %>">
+      </div>
+
+      <!-- Label and input for happy_hour_start_time -->
+      <div class="form-group">
+        <label for="happy_hour_start_time" class="control-label">
+          Happy hour start time
+        </label>
+
+        <input type="text" id="happy_hour_start_time" name="happy_hour_start_time" placeholder="Happy hour start time" class="form-control" value="<%= @bar.happy_hour_start_time %>">
+      </div>
+
+      <!-- Label and input for happy_hour_end_time -->
+      <div class="form-group">
+        <label for="happy_hour_end_time" class="control-label">
+          Happy hour end time
+        </label>
+
+        <input type="text" id="happy_hour_end_time" name="happy_hour_end_time" placeholder="Happy hour end time" class="form-control" value="<%= @bar.happy_hour_end_time %>">
+      </div>
+
+      <!-- Label and input for latitude -->
+      <div class="form-group">
+        <label for="latitude" class="control-label">
+          Latitude
+        </label>
+
+        <input type="text" id="latitude" name="latitude" placeholder="Latitude" class="form-control" value="<%= @bar.latitude %>">
+      </div>
+
+      <!-- Label and input for longitude -->
+      <div class="form-group">
+        <label for="longitude" class="control-label">
+          Longitude
+        </label>
+
+        <input type="text" id="longitude" name="longitude" placeholder="Longitude" class="form-control" value="<%= @bar.longitude %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Bar
+      </button>
+      or
+      <a href="/bars">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Bar #<%= @bar.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @bar.name %></dd>
+
+      <dt>Address</dt>
+      <dd><%= @bar.address %></dd>
+
+      <dt>Style</dt>
+      <dd><%= @bar.style %></dd>
+
+      <dt>Cuisine</dt>
+      <dd><%= @bar.cuisine %></dd>
+
+      <dt>Happy hour start time</dt>
+      <dd><%= @bar.happy_hour_start_time %></dd>
+
+      <dt>Happy hour end time</dt>
+      <dd><%= @bar.happy_hour_end_time %></dd>
+
+      <dt>Latitude</dt>
+      <dd><%= @bar.latitude %></dd>
+
+      <dt>Longitude</dt>
+      <dd><%= @bar.longitude %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/bars" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/bars/<%= @bar.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_bar/<%= @bar.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
