@@ -17,7 +17,7 @@
       <% @food_orders.each do |food_order| %>
       <tr>
         <td><%= food_order.food.name %></td>
-        <td><%= food_order.bar_id %></td>
+        <td><%= food_order.bar.name %></td>
         <td>
           <a href="/food_orders/<%= food_order.id %>" class="btn btn-primary">Show</a>
           <a href="/food_orders/<%= food_order.id %>/edit" class="btn btn-warning">Edit</a>
