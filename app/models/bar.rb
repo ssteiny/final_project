@@ -9,6 +9,10 @@ class Bar < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :foods,
+             :through => :food_orders,
+             :source => :food
+
   # Validations
 
 end

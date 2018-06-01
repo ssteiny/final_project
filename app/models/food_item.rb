@@ -7,6 +7,10 @@ class FoodItem < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :bars,
+             :through => :food_orders,
+             :source => :bar
+
   # Validations
 
 end
