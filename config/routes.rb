@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root :to => "bars#index"
   # Routes for the Drink_order resource:
   # CREATE
