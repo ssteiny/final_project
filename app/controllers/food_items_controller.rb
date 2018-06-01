@@ -1,6 +1,7 @@
 class FoodItemsController < ApplicationController
   def index
-    @food_items = FoodItem.page(params[:page]).per(10)
+    @q = FoodItem.ransack(params[:q])
+    @food_items = @q.result(:distinct => true).includes(:food_orders, :bars).page(params[:page]).per(10)
 
     render("food_items/index.html.erb")
   end
