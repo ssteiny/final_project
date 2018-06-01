@@ -18,7 +18,7 @@
       <% @food_items.each do |food_item| %>
       <tr>
         <td><%= food_item.name %></td>
-        <td><%= food_item.image %></td>
+        <td><img src='<%= food_item.image %>' class='img-responsive'></td>
         <td><%= food_item.price %></td>
         <td>
           <a href="/food_items/<%= food_item.id %>" class="btn btn-primary">Show</a>

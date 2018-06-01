@@ -1,4 +1,6 @@
 class FoodItem < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   # Direct associations
 
   has_many   :food_orders,
