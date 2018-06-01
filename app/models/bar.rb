@@ -9,6 +9,10 @@ class Bar < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :drinks,
+             :through => :drink_orders,
+             :source => :drink
+
   has_many   :foods,
              :through => :food_orders,
              :source => :food

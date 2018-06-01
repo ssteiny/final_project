@@ -6,6 +6,10 @@ class Drink < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :bars,
+             :through => :drink_orders,
+             :source => :bar
+
   # Validations
 
 end
