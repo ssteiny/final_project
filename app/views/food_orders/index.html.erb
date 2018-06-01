@@ -16,8 +16,20 @@
 
       <% @food_orders.each do |food_order| %>
       <tr>
-        <td><%= food_order.food.name %></td>
-        <td><%= food_order.bar.name %></td>
+        <td>
+          <% if food_order.food.present? %>
+            <a href="/food_items/<%= food_order.food.id %>">
+              <%= food_order.food.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if food_order.bar.present? %>
+            <a href="/bars/<%= food_order.bar.id %>">
+              <%= food_order.bar.name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/food_orders/<%= food_order.id %>" class="btn btn-primary">Show</a>
           <a href="/food_orders/<%= food_order.id %>/edit" class="btn btn-warning">Edit</a>
