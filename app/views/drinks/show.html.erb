@@ -26,3 +26,65 @@
     </div>
   </div>
 </div>
+
+<!-- A Drink has many drink_orders -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Drink Orders
+      </li>
+
+      <% @drink.drink_orders.each do |drink_order| %>
+        <li class="list-group-item">
+          <a href="/drink_orders/<%= drink_order.id %>">
+            <%= drink_order.drink_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/drink_orders/<%= drink_order.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/drink_orders/<%= drink_order.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_drink_order/<%= drink_order.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Drink has many bars -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Bars
+      </li>
+
+      <% @drink.bars.each do |bar| %>
+        <li class="list-group-item">
+          <a href="/bars/<%= bar.id %>">
+            <%= bar.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/bars/<%= bar.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/bars/<%= bar.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_bar/<%= bar.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
