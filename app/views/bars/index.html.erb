@@ -1,8 +1,43 @@
 <div class="page-header">
+  <br>
   <h1>
-    Bars
-    <a href="/bars/new" class="btn btn-lg btn-success">New Bar</a>
-  </h1>
+    Happy Hour Bars</h1>
+    
+    <a href="/bars/new" class="btn btn-lg btn-success">New Bar</a> <br>
+  
+  <div class="row">
+  <div class="col-md-12">
+    <br>
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Style</th>
+        <th>Cuisine</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @bars.each do |bar| %>
+      <tr>
+        <td><%= bar.name %></td>
+        <td><%= bar.address %></td>
+        <td><%= bar.style %></td>
+        <td><%= bar.cuisine %></td>
+        <td><%= bar.happy_hour_start_time %></td>
+        <td><%= bar.happy_hour_end_time %></td>
+        <td>
+          <a href="/bars/<%= bar.id %>" class="btn btn-primary">Show</a>
+          <a href="/bars/<%= bar.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_bar/<%= bar.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= paginate @bars, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
 </div><div class="row mb-1">
   <div class="col-md-12">
     <%= search_form_for @q, :class => collapse_search_form, :id => "bars_filters" do |f| %>
@@ -12,6 +47,7 @@
     <%= f.label :name_cont, "Name contains" %>
     <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
   </div>
+  
 
 <div class="form-group">
   <%= f.label :longitude, "Longitude" %>
@@ -188,42 +224,7 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Style</th>
-        <th>Cuisine</th>
-        <th>Happy hour start time</th>
-        <th>Happy hour end time</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Actions</th>
-      </tr>
 
-      <% @bars.each do |bar| %>
-      <tr>
-        <td><%= bar.name %></td>
-        <td><%= bar.address %></td>
-        <td><%= bar.style %></td>
-        <td><%= bar.cuisine %></td>
-        <td><%= bar.happy_hour_start_time %></td>
-        <td><%= bar.happy_hour_end_time %></td>
-        <td><%= bar.latitude %></td>
-        <td><%= bar.longitude %></td>
-        <td>
-          <a href="/bars/<%= bar.id %>" class="btn btn-primary">Show</a>
-          <a href="/bars/<%= bar.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_bar/<%= bar.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @bars, theme: 'twitter-bootstrap-4' %>
-  </div>
-</div>
 
 <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
@@ -235,3 +236,21 @@
     handler.fitMapToBounds();
   });
 </script>
+
+<!------function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044},
+  
+  var map = new google.maps.Map(document.getElememtById('map'), {
+    zoom:4, 
+    center: myLatLng
+    });
+    <% @bars.each do |bar| %>
+      var barLatLng = {lat: <%= bar.latitude %>, lng: <%= bar.longitude %>}
+      var marker = new google.maps.Marker({
+        position: barLatLng, 
+        map: map, 
+        title: '<%=bar.name%>'
+        });
+    <%end%>
+    }---->
+    

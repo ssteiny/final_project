@@ -33,11 +33,14 @@
           Image
         </label>
 
-        <%= cl_image_tag(@food_item.image.to_s, :width => 90, :height => 90, :crop => :thumb) %>
+        <%=  cl_image_tag.(@food_item.image.to_s, :width => 90, :height => 90, :crop => :thumb) %>
         <input type="file" id="image" name="image" class="form-control">
+        
       </div>
 
       <!-- Label and input for price -->
+      <br>
+      
       <div class="form-group">
         <label for="price" class="control-label">
           Price
@@ -45,6 +48,16 @@
 
         <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @food_item.price %>">
       </div>
+     <br> 
+     <div class="form-group">
+    <label for="bar_id">
+      bar
+    </label>
+
+    <%= select_tag("bar_id", options_from_collection_for_select(Bar.all, :id, :name, @food_order.try(:bar_id)), :class => "form-control") %>
+    or <a href="/bars/new">Add a new bar.</a> 
+  </div>
+<br> 
 
       <button class="btn btn-warning">
         Update Food Item

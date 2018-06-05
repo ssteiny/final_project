@@ -33,7 +33,7 @@
           Image
         </label>
 
-        <input type="file" id="image" name="image" class="form-control">
+        <input type="url" id="image" name="image" class="form-control">
       </div>
 
       <!-- Label and input for price -->
@@ -44,6 +44,17 @@
 
         <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @food_item.price %>">
       </div>
+      
+       <!-- Label and input for bar_id -->
+  <div class="form-group">
+    <label for="bar_id">
+      Bar
+    </label>
+    
+      <%= select_tag("bar_id", options_from_collection_for_select(Bar.all, :id, :name, @food_order.try(:bar_id)), :class => "form-control") %>
+      or <a href="/bars/new">Add a new bar.</a>  
+  </div>
+
 
       <button class="btn btn-success">
         Create Food Item
