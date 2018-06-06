@@ -98,4 +98,6 @@ class BarsController < ApplicationController
       redirect_back(:fallback_location => "/", :notice => "Bar deleted.")
     end
   end
+  
+ 
 end

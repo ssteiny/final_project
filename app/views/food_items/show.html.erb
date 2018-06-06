@@ -1,20 +1,33 @@
-<div class="page-header">
-  <h1><%= @food_item.name %></h1>
-</div>
+<br>
+
+<head class="page-header">
+  <h1>Bars with <%= @food_item.name %>s:</h1>
+</head>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
+      <ul class="list-group">
+      <% @food_item.food_orders.each do |food_order| %>
+        <li class="list-group-item">
+          <a href="/bars/<%= food_order.bar_id %>">
+            <%= food_order.bar.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/food_orders/<%= food_order.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/food_orders/<%= food_order.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_food_order/<%= food_order.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+      </ul>
     
-    
-      
-      <div class="form-group">
-        <label for="bar_id" class="control-label">
-          Bars with <%= @food_item.name %>:
-        </label>
-
-        <%= select_tag(:bar_id, options_from_collection_for_select(Bar.all, :id, :name), :class => "form-control") %>
-      </div>
 
     </dl>
 
@@ -38,27 +51,10 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Food Orders
+        Add Bar that has this food item
       </li>
 
-      <% @food_item.food_orders.each do |food_order| %>
-        <li class="list-group-item">
-          <a href="/food_orders/<%= food_order.id %>">
-            <%= food_order.food_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/food_orders/<%= food_order.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/food_orders/<%= food_order.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_food_order/<%= food_order.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
+      
 
       <li class="list-group-item">
         <form action="/create_food_order" method="post">
@@ -67,18 +63,22 @@
 
       <!-- Label and input for food_id -->
       <div class="form-group">
-        <label for="food_id" class="control-label">
-          Food
+        <label for="bar_id" class="control-label">
+          Bar
         </label>
 
-        <%= select_tag(:food_id, options_from_collection_for_select(FoodItem.all, :id, :name), :class => "form-control") %>
+        <%= select_tag(:bar_id, options_from_collection_for_select(Bar.all, :id, :name), :class => "form-control") %>
+        or <a href="/bars/new">add a new bar.</a> 
+        
+      <input name="food_id" type="hidden" value="<%= @food_item.id %>">
+      
       </div>
 
       <!-- Label and input for bar_id -->
     
 
       <button class="btn btn-block btn-success">
-        Create Food Order
+        Create Option
       </button>
     </form>
       </li>
@@ -88,31 +88,3 @@
 
 <!-- A Food item has many bars -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Bars
-      </li>
-
-      <% @food_item.bars.each do |bar| %>
-        <li class="list-group-item">
-          <a href="/bars/<%= bar.id %>">
-            <%= bar.name %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/bars/<%= bar.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/bars/<%= bar.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_bar/<%= bar.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>

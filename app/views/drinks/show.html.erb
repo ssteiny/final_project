@@ -1,45 +1,17 @@
-<div class="page-header">
-  <h3>Drink #<%= @drink.id %></h3>
-</div>
+<br>
+
+<head class="page-header">
+  <h1>Bars with <%= @drink.name %>s:</h1>
+</head>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @drink.name %></dd>
-
-      <dt>Price</dt>
-      <dd><%= @drink.price %></dd>
-
-    </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/drinks" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/drinks/<%= @drink.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_drink/<%= @drink.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- A Drink has many drink_orders -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Drink Orders
-      </li>
-
+      <ul class="list-group">
       <% @drink.drink_orders.each do |drink_order| %>
         <li class="list-group-item">
-          <a href="/drink_orders/<%= drink_order.id %>">
-            <%= drink_order.drink_id %>
+          <a href="/bars/<%= drink_order.bar_id %>">
+            <%= drink_order.bar.name %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/drink_orders/<%= drink_order.id %>" class="btn btn-primary">
@@ -54,26 +26,59 @@
           </div>
         </li>
       <% end %>
+      </ul>
+    
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/drinks" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/drinks/<%= @drink.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_drink/<%= @drink.name %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Food item has many food_orders -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Add Bar that has this drink
+      </li>
+
+      
 
       <li class="list-group-item">
         <form action="/create_drink_order" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for drink_id -->
-      <input type="hidden" name="drink_id" value="<%= @drink.id %>">
-
-      <!-- Label and input for bar_id -->
+      <!-- Label and input for food_id -->
       <div class="form-group">
         <label for="bar_id" class="control-label">
           Bar
         </label>
 
         <%= select_tag(:bar_id, options_from_collection_for_select(Bar.all, :id, :name), :class => "form-control") %>
+        or <a href="/bars/new">add a new bar.</a> 
+        
+      <input name="drink_id" type="hidden" value="<%= @drink.id %>">
+      
       </div>
 
+      <!-- Label and input for bar_id -->
+    
+
       <button class="btn btn-block btn-success">
-        Create Drink Order
+        Create Option
       </button>
     </form>
       </li>
@@ -81,33 +86,5 @@
   </div>
 </div>
 
-<!-- A Drink has many bars -->
+<!-- A Food item has many bars -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Bars
-      </li>
-
-      <% @drink.bars.each do |bar| %>
-        <li class="list-group-item">
-          <a href="/bars/<%= bar.id %>">
-            <%= bar.name %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/bars/<%= bar.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/bars/<%= bar.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_bar/<%= bar.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>

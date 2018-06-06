@@ -8,8 +8,9 @@
   <% end %>
 <% end %>
 
+<br>
 <div class="page-header">
-  <h3>Edit Bar #<%= @bar.id %></h3>
+  <h3>Edit <%= @bar.name %></h3>
 </div>
 
 <div class="row">
@@ -73,22 +74,10 @@
       </div>
 
       <!-- Label and input for latitude -->
-      <div class="form-group">
-        <label for="latitude" class="control-label">
-          Latitude
-        </label>
-
-        <input type="text" id="latitude" name="latitude" placeholder="Latitude" class="form-control" value="<%= @bar.latitude %>">
-      </div>
+      
 
       <!-- Label and input for longitude -->
-      <div class="form-group">
-        <label for="longitude" class="control-label">
-          Longitude
-        </label>
-
-        <input type="text" id="longitude" name="longitude" placeholder="Longitude" class="form-control" value="<%= @bar.longitude %>">
-      </div>
+      
 
       <button class="btn btn-warning">
         Update Bar

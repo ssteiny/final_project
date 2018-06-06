@@ -7,9 +7,9 @@
     </div>
   <% end %>
 <% end %>
-
+<br>
 <div class="page-header">
-  <h3>Edit Drink #<%= @drink.id %></h3>
+  <h3>Edit <%= @drink.name%>s</h3>
 </div>
 
 <div class="row">
@@ -28,13 +28,7 @@
       </div>
 
       <!-- Label and input for price -->
-      <div class="form-group">
-        <label for="price" class="control-label">
-          Price
-        </label>
-
-        <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @drink.price %>">
-      </div>
+      
 
       <button class="btn btn-warning">
         Update Drink
